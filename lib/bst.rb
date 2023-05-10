@@ -16,7 +16,7 @@ end
 
 class Tree
     
-    def initialize(array)
+    def initialize(array = [])
         @array = array
         @proper_array = conditionate_array
         @root = build_tree(@proper_array)
@@ -66,5 +66,24 @@ class Tree
             find(value, node.right_child) 
         end
     end
+
+    def insert(root = @root, value)
+        
+        if root.nil?
+            root = Node.new(value)
+        else
+            if root.data == value
+                return root
+            elsif value < root.data
+                root.left_child = insert(root.left_child, value)
+            else
+                root.right_child = insert(root.right_child, value)
+            end
+        end
+        return root
+
+    end
+
+    
 end
 
