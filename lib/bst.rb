@@ -125,10 +125,11 @@ class Tree
             # Case 3 - 3 children
                 minimun = find_min(root.right_child)
                 root.data = minimun
-                root.right_child = remove(root.right_child, minimun)
+                root.right_child = delete(root.right_child, minimun)
             end
-            root
         end
+        root
+
     end
 end
 
