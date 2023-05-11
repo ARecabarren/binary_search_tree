@@ -50,6 +50,25 @@ class Tree
         root
     end
 
+    def is_leaf?(node)
+        if node.right_child.nil? && node.left_child.nil?
+            true
+        else
+            false
+        end
+    end
+
+    def find_min(root)
+        if root.left_child.nil? && root.right_child.nil?
+            return root
+        elsif root.left_child.nil?
+            return root
+        else
+            min = find_min(root.left_child)
+        end
+        min.data
+    end
+
     def pretty_print(node = @root, prefix = '', is_left = true)
         pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
         puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
@@ -84,6 +103,32 @@ class Tree
 
     end
 
-    
+    def delete(root = @root, value)
+
+        return nil if root.nil?
+
+        if value < root.data
+            root.left_child = delete(root.left_child, value)
+        elsif value > root.data
+            root.right_child = delete(root.right_child, value)
+        else # Value isn't bigger or lower than root.data so we found the node
+
+            # Caso 1 - Leaf node
+            return nil if root.left_child.nil? && root.right_child.nil?
+
+            # Case 2 - A single child
+            if root.left_child.nil?
+                root = root.right_child
+            elsif root.right_child.nil?
+                root= root.left_child
+            else
+            # Case 3 - 3 children
+                minimun = find_min(root.right_child)
+                root.data = minimun
+                root.right_child = remove(root.right_child, minimun)
+            end
+            root
+        end
+    end
 end
 
