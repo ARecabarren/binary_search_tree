@@ -87,7 +87,6 @@ class Tree
     end
 
     def insert(root = @root, value)
-        
         if root.nil?
             root = Node.new(value)
         else
@@ -100,11 +99,9 @@ class Tree
             end
         end
         return root
-
     end
 
     def delete(root = @root, value)
-
         return nil if root.nil?
 
         if value < root.data
@@ -129,7 +126,26 @@ class Tree
             end
         end
         root
+    end
 
+    def level_order(root = @root, queue = [])
+        result = block_given? ? nil : []
+
+        queue.push(root)
+        until queue.empty?
+            current_node = queue.shift
+            
+            if block_given?
+                yield current_node
+            else
+                result << current_node.data
+            end
+
+            queue << current_node.left_child unless current_node.left_child.nil?
+            queue << current_node.right_child unless current_node.right_child.nil?
+
+        end
+        
     end
 end
 

@@ -16,6 +16,7 @@ myTree = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 
 codeschool = Tree.new([12,15,5,7,3,17,13,9,1,19])
 codeschool.pretty_print
-codeschool.delete(5)
-codeschool.pretty_print
+# codeschool.delete(5)
+# codeschool.pretty_print
 
+codeschool.level_order
