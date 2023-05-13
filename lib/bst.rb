@@ -12,6 +12,8 @@ class Node
     def <=>(other)
         @data <=> other.data
     end
+
+    
 end
 
 class Tree
@@ -148,7 +150,23 @@ class Tree
         return result if !block_given?
     end
 
-    def inorder
+    def inorder(root = @root, stack = [])
+        return if root.nil?
+        
+        unless root.left_child.nil? 
+            inorder(root.left_child, stack) 
+        end
+
+        if block_given?
+            yield root 
+        else
+            stack.concat([root.data])
+        end
+
+        unless root.right_child.nil?
+            inorder(root.right_child, stack) 
+        end
+        return stack
     end
 end
 
