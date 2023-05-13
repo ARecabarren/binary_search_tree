@@ -17,7 +17,7 @@ class Node
 end
 
 class Tree
-    
+    attr_accessor :root
     def initialize(array = [])
         @array = array
         @proper_array = conditionate_array
@@ -68,7 +68,18 @@ class Tree
         else
             min = find_min(root.left_child)
         end
-        min.data
+        min
+    end
+
+    def find_max(root)
+        if root.left_child.nil? && root.right_child.nil?
+            return root
+        elsif root.right_child.nil?
+            return root
+        else
+            max = find_min(root.left_child)
+        end
+        max
     end
 
     def pretty_print(node = @root, prefix = '', is_left = true)
@@ -206,6 +217,35 @@ class Tree
         end
 
         return stack
+    end
+
+    def height(root = @root)
+        return -1 if root.nil?
+        
+        left_height = height(root.left_child)
+        right_height = height(root.right_child)
+
+        return [left_height,right_height].max + 1
+    end
+
+    def depth(node)
+        if node.nil? or node == @root
+            return 0
+        end
+        
+        pointer = @root
+        depth = 0
+        until pointer.data == node.data
+            if node.data < pointer.data
+                pointer = pointer.left_child
+            else
+                pointer = pointer.right_child
+            end
+            depth += 1
+
+        end
+
+        depth
     end
 end
 

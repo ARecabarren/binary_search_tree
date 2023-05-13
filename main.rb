@@ -21,6 +21,13 @@ codeschool.pretty_print
 
 # p codeschool.level_order
 
-p codeschool.inorder
-p codeschool.preorder
-p codeschool.postorder
+# p codeschool.inorder
+# p codeschool.preorder
+# p codeschool.postorder
+
+# puts codeschool.height()
+# puts some_node = codeschool.find(5)
+# puts codeschool.height(some_node)
+
+other_node = codeschool.find(9)
+puts codeschool.depth(other_node)
