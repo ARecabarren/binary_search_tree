@@ -145,7 +145,11 @@ class Tree
             queue << current_node.right_child unless current_node.right_child.nil?
 
         end
-        
+        return result if !block_given?
+    end
+
+    def inorder
     end
 end
+
 
