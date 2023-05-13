@@ -19,4 +19,8 @@ codeschool.pretty_print
 # codeschool.delete(5)
 # codeschool.pretty_print
 
-codeschool.level_order
+# p codeschool.level_order
+
+p codeschool.inorder
+p codeschool.preorder
+p codeschool.postorder

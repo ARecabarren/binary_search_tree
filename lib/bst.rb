@@ -150,6 +150,25 @@ class Tree
         return result if !block_given?
     end
 
+    def preorder(root = @root, stack = [])
+        return if root.nil?
+
+        if block_given?
+            yield root 
+        else
+            stack.concat([root.data])
+        end
+
+        unless root.left_child.nil? 
+            preorder(root.left_child, stack) 
+        end  
+
+        unless root.right_child.nil?
+            preorder(root.right_child, stack) 
+        end
+        return stack
+
+    end    
     def inorder(root = @root, stack = [])
         return if root.nil?
         
@@ -166,6 +185,26 @@ class Tree
         unless root.right_child.nil?
             inorder(root.right_child, stack) 
         end
+        return stack
+    end
+
+    def postorder(root = @root, stack = [])
+        return if root.nil?
+        
+        unless root.left_child.nil? 
+            postorder(root.left_child, stack) 
+        end
+
+        unless root.right_child.nil?
+            postorder(root.right_child, stack) 
+        end
+
+        if block_given?
+            yield root 
+        else
+            stack.concat([root.data])
+        end
+
         return stack
     end
 end
