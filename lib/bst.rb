@@ -247,6 +247,24 @@ class Tree
 
         depth
     end
+
+    def balance?
+        left_height = height(@root.left_child)
+        right_height = height(@root.right_child)
+
+        difference = [left_height,right_height].max - [left_height,right_height].min
+
+        difference >= 2 ? false : true
+    end
+
+    def rebalance
+        #traverse tree again and get the array
+        # Give it to the build tree function
+        @array = level_order
+        values = conditionate_array
+        @root = build_tree(values)
+
+    end
 end
 
 
