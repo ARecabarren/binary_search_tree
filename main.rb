@@ -29,5 +29,16 @@ codeschool.pretty_print
 # puts some_node = codeschool.find(5)
 # puts codeschool.height(some_node)
 
-other_node = codeschool.find(9)
-puts codeschool.depth(other_node)
+# other_node = codeschool.find(9)
+# puts codeschool.depth(other_node)
+codeschool.delete(19)
+codeschool.delete(17)
+codeschool.delete(15)
+
+
+codeschool.pretty_print
+puts codeschool.balance?
+codeschool.rebalance
+codeschool.pretty_print
+puts codeschool.balance?
+
