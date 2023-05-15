@@ -132,7 +132,7 @@ class Tree
             elsif root.right_child.nil?
                 root= root.left_child
             else
-            # Case 3 - 3 children
+            # Case 3 - 2 children
                 minimun = find_min(root.right_child)
                 root.data = minimun
                 root.right_child = delete(root.right_child, minimun)
